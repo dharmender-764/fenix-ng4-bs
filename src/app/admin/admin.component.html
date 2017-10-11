@@ -1,0 +1,334 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header row" style="float: none">
+      <div class="col-xs-8 no-right-left-padding">
+        <span class="navbar-brand no-right-left-padding">
+          <strong>Return Management System -</strong> Admin Console
+        </span>
+      </div>
+      <div class="no-right-left-padding pull-right">
+        <span class="navbar-brand">Admin</span>
+        <span class="navbar-brand glyphicon glyphicon-user"></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<mat-tab-group dynamicHeight=true>
+  <mat-tab label="Rule Engine">
+    <div class="row" style="padding-left: 2%; padding-right: 2%; padding-bottom: 1%">
+      <div class="col-md-8">
+        <h3>Existing Rules</h3>
+      </div>
+      <div class="col-md-4">
+        <h4><a type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#ruleModal" (click)="open(ruleModal)">Add New Rule</a></h4>
+      </div>
+    </div>
+    <div class="row">  
+      <div class="col-md-12 table-responsive" style="padding-left: 3%; padding-right: 3%; padding-bottom: 3%">
+        <table class="table table-striped table-bordered table-hover" style="margin-bottom: 0">
+          <thead>
+            <tr>
+              <th>Rule Type</th>
+              <th>Applicable Category</th>
+              <th>Reason Codes</th>
+              <th>Current Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Return Label Fee</td>
+              <td>Men's Apparel</td>
+              <td>All</td>
+              <td>Active</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+            <tr>
+              <td>Return Window</td>
+              <td>All Categories</td>
+              <td>All</td>
+              <td>Active</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-muted">Restocking Fee</td>
+              <td class="text-muted">All Categories</td>
+              <td class="text-muted">All</td>
+              <td class="text-muted">Inactive</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+            <tr>
+              <td>Refund Rules</td>
+              <td>All Categories</td>
+              <td>All</td>
+              <td>Active</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+          </tbody>  
+        </table>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Reason Codes">
+    <div class="row" style="padding-left: 2%; padding-right: 2%; padding-bottom: 1%">
+      <div class="col-md-8">
+        <h3>Manage Reason Codes</h3>
+      </div>
+      <div class="col-md-4">
+        <h4><a type="button" class="btn btn-sm btn-primary pull-right" data-toggle="modal" data-target="#codeModal" (click)="open(codeModal)">Add New Code</a></h4>
+      </div>
+    </div>
+    
+    <div class="row">  
+      <div class="col-md-12 table-responsive" style="padding-left: 3%; padding-right: 3%; padding-bottom: 3%">
+        <table class="table table-striped table-bordered table-hover" style="margin-bottom: 0">
+          <thead>
+            <tr>
+              <th>Available Reason Codes</th>
+              <th>Applicable Category</th>
+              <th>Current Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Damaged Product</td>
+              <td>Apparel, Shoes</td>
+              <td>Active</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-muted">Doesn't work/Defective</td>
+              <td class="text-muted">Apparel, Shoes</td>
+              <td class="text-muted">Inactive</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+            <tr>
+              <td>Missing Parts/Accessories</td>
+              <td>All Categories</td>
+              <td>Active</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+            <tr>
+              <td>No longer needed</td>
+              <td>All Categories</td>
+              <td>Active</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+            <tr>
+              <td>Got better deal</td>
+              <td>All Categories</td>
+              <td>Active</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+            <tr>
+              <td>Item arrived too late</td>
+              <td>All Categories</td>
+              <td>Active</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+            <tr>
+              <td>Wrong item</td>
+              <td>All Categories</td>
+              <td>Active</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+            <tr>
+              <td>Inaccurate description</td>
+              <td>All Categories</td>
+              <td>Active</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+            <tr>
+              <td>Not as expected</td>
+              <td>All Categories</td>
+              <td>Active</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>   
+  </mat-tab>
+  <mat-tab label="Return Location">
+    <div class="row" style="padding-left: 2%; padding-right: 2%; padding-bottom: 1%">
+      <div class="col-md-8">
+        <h3>Return Shipping Locations</h3>
+      </div>
+      <div class="col-md-4">
+        <h4><button class="btn btn-sm btn-primary pull-right disabled">Add New Location</button></h4>
+      </div>
+    </div>
+    <div class="row">  
+      <div class="col-md-12 table-responsive" style="padding-left: 3%; padding-right: 3%; padding-bottom: 3%">
+        <table class="table table-striped table-bordered table-hover" style="margin-bottom: 0">
+          <thead>
+            <tr>
+              <th>Location ID</th>
+              <th>Address</th>
+              <th>Applicable Category</th>
+              <th>Current Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>10001</td>
+              <td>220,. Market St, Chicago</td>
+              <td>All Categories</td>
+              <td>Active</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-muted">10002</td>
+              <td class="text-muted">800 Market St, Waukegan, IL 60085</td>
+              <td class="text-muted">All Categories</td>
+              <td class="text-muted">Inactive</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+            <tr>
+              <td>10003</td>
+              <td>800 Market St, San Francisco</td>
+              <td>All Categories</td>
+              <td>Active</td>
+              <td>
+                <a href=""><span class="glyphicon glyphicon-pencil text-primary" title="Modify"></span></a>&nbsp;
+                <a href=""><span class="glyphicon glyphicon-remove text-danger" title="Delete"></span></a>
+              </td>
+            </tr>
+          </tbody>  
+        </table>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Returns Window" disabled>
+   <div class="demo-tab-content">
+      tab4
+    </div>  
+  </mat-tab>
+</mat-tab-group>
+
+<!-- Add New Rule Modal Popup -->
+<ng-template #ruleModal>
+      <div class="modal-header fenix-modal-header">
+        <a type="button" class="close" data-dismiss="modal"><span style="color: #fff;">&times;</span></a>
+        <h4 class="modal-title" style="color: #fff;">Add New Rule</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-5">
+            <label for="availableRules">Select an Existing Rule</label>
+            <select id="availableRules" class="form-control">
+              <option value="">Set of Available Rules</option>
+            </select>
+          </div>
+          <div class="col-md-1">OR</div>
+          <div class="col-md-5">
+            <label for="newRuleId">Create a New Rule</label>
+            <input type="text" class="form-control" name="newRule" id="newRuleId" /><br/>
+            <input type="text" class="form-control" name="details" id="detailsId" placeholder="Details"/>
+          </div>
+        </div>
+        <br/><hr class="hr" style="border-style: dashed;" /><br/>
+        <div class="row">
+          <div class="col-md-5">
+            <label for="applicableCategories">Select Applicable Categories</label>
+            <select id="applicableCategories" class="form-control">
+              <option value="">Category List</option>
+            </select>
+          </div>
+          <div class="col-md-1">&nbsp;</div>
+          <div class="col-md-5">
+            <label for="reasonCodes">Select Applicable reason Codes</label>
+            <select id="reasonCodes" class="form-control">
+              <option value="">All Reason Codes</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add New Rule</button>
+      </div>
+</ng-template>
+
+<!-- Add New Code Modal Popup -->
+<ng-template #codeModal>
+      <div class="modal-header fenix-modal-header">
+        <a type="button" class="close" data-dismiss="modal"><span style="color: #fff;">&times;</span></a>
+        <h4 class="modal-title" style="color: #fff;">Add Reason Code</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-11">
+            <label for="newReasonCodeId">Create a New Reason Code</label>
+            <input type="text" class="form-control" name="newReasonCode" id="newReasonCodeId" /><br/>
+            <textarea rows="3" class="form-control" name="details" id="detailsId" placeholder="Details"></textarea>
+          </div>
+          <div class="col-md-12">&nbsp;</div>
+          <div class="col-md-5">  
+            <label for="applicableCategories1">Select Applicable Categories</label>
+            <select id="applicableCategories1" class="form-control">
+              <option value="">Category List</option>
+            </select>
+          </div>
+          <div class="col-md-1">&nbsp;</div>
+          <div class="col-md-5">  
+            <label for="subCategory">Select Sub-Category (if needed)</label>
+            <select id="subCategory" class="form-control">
+              <option value="">Sub-Category List</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Add New Code</button>
+      </div>
+</ng-template>

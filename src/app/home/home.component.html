@@ -1,0 +1,45 @@
+<!-- Begin page content -->
+<div class="container full-border border-bottom">
+ <form action="#" th:action="@{/orderdetails}" th:object="${orderValueObject}" method="post">
+  <div class="row border-bottom">
+    <div class="col-xs-12">
+      <small>
+        <strong style="color: #454848">Please confirm the details below to start the process</strong>
+      </small>
+    </div> 
+  </div>
+  <div style="margin-top: 15px">
+    <div class="row">
+        <div class="col-xs-10 form-group" th:if="${invalidOrderError}">
+          <strong th:classappend="|bold text-danger|" th:text="${invalidOrderError}"></strong>
+        </div>
+        <div class="col-xs-10 form-group">
+          <label for="orderNumber">Order Number <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="orderNumber" th:field="*{orderId}" />
+          <strong th:classappend="|small text-danger|" class="form-error-text" th:if="${#fields.hasErrors('orderId')}" th:errors="*{orderId}"></strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" th:field="*{email}" />
+          <strong th:classappend="|small text-danger|" th:if="${#fields.hasErrors('emailOrPhoneEntered')}" th:errors="*{emailOrPhoneEntered}"></strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" class="form-control" id="phoneNumber" th:field="*{phone}" maxlength="10" />
+          <strong th:classappend="|small text-danger|" th:if="${#fields.hasErrors('emailOrPhoneEntered')}" th:errors="*{emailOrPhoneEntered}"></strong>
+          <strong th:classappend="|small text-danger|" th:if="${#fields.hasErrors('phoneValid')}" th:errors="*{phoneValid}"></strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 form-group">
+          <small class="text-muted"><span class="text-danger">*</span> Either the Phone number or Email used for billing is required.</small><br/>
+          <button class="btn btn-primary" type="submit">Continue</button>
+        </div>
+    </div>
+  </div>
+</form>
+</div>
