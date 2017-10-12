@@ -4,3 +4,17 @@
    border-bottom-width: thin;
    padding-bottom: 3px;
 }
+
+.home-div {
+	margin-top: 10px;
+}
+
+.home-form {
+	margin-left: 10px;
+}
+
+.field-label {
+	font-size: 1.4rem;
+	font-weight: bold;
+	width: 80%;
+}

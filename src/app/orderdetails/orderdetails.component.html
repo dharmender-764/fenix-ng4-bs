@@ -1,0 +1,82 @@
+<div class="container orderdetails-div">
+  <div class="row border-bottom">
+    <div class="col-xs-9">
+      <h4><strong>Order Details</strong></h4>
+    </div> 
+    <div class="col-xs-3" style="right:50px;position:absolute;">
+      <h5><button class="btn btn-xs btn-info">Filters</button></h5>
+    </div>
+  </div>
+  
+  <!-- PRODUCTS -->
+  <div *ngFor="let item of orderDetails?.orderItems">
+    <div class="row margin-top">
+      <div class="col-xs-11">
+         <div class="row">
+          <div class="col-xs-4 col-md-2">
+            <img src="assets/img/{{item.product.imageUrl}}" onerror="this.src='assets/img/broken_image.png'" height="75%" width="75%" class="img-thumbnail"/><br/>
+          </div>
+          <div class="col-xs-8 col-md-10 no-right-left-padding">
+            <div>
+              <div class="col-xs-12 ">
+                <strong style="color: #454848">{{item.product.name}}</strong><br/>
+                <small class="text-muted details-font">SKU# {{item.product.code}}</small>
+              </div>
+              <div class="col-xs-12">
+                <small class="text-muted details-font">
+                  Order Status:
+                  <span style="text-transform: capitalize;"><strong style="color: #454848">{{item.itemStatusDisplayString}}</strong></span>
+                  On 
+                  <span *ngIf="item.itemStatus == 'DELIVERED'"><strong style="color: #454848" th:text="${#calendars.format(item.deliveryDate,'MMMM  d, yyyy')}">July 2nd, 2017</strong></span>
+                  <span *ngIf="item.itemStatus == 'RETURN_INITIATED'"><strong style="color: #454848" th:text="${#calendars.format(item.itemStatusDate,'MMMM  d, yyyy')}">July 2nd, 2017</strong></span>
+                </small>
+              </div>
+              <div class="col-xs-12" *ngIf="item.returnEligible && item.itemStatus == 'DELIVERED'">
+                <small class="text-muted">Eligible for return through <strong style="color: #454848" th:text="${#calendars.format(item.maxReturnDate,'MMMM  d, yyyy')}">July 2nd, 2017</strong></small>
+              </div>
+              <div class="col-xs-12 details-font">
+                <small>${{item.product.price}}</small>
+              </div>
+            </div>
+          </div>
+         </div>
+      </div>
+    </div>
+    <div class="row border-bottom">
+      <div class="col-xs-4 col-md-2">
+        <small class="text-muted">Order# <span>{{orderDetails.orderId}}</span></small>
+      </div>
+      <div class="col-xs-8 col-md-10 no-right-left-padding" *ngIf="item.returnEligible && item.itemStatus == 'DELIVERED'">
+        <a class="btn btn-xs btn-warning" th:href="@{/refund_step1(orderId=${orderDetails.orderId},orderItemId=${item.id},productId=${item.product.id})}">Return</a>
+        <a class="btn btn-xs btn-warning disabled">Buy Again</a>
+        <a class="btn btn-xs btn-warning disabled">More Options</a>
+      </div>
+      <div class="col-xs-8 col-md-10 no-right-left-padding" *ngIf="item.itemStatus == 'RETURN_INITIATED'">
+        <a class="btn btn-xs btn-warning" style="font-size: smaller;">Cancel Return</a>
+        <a class="btn btn-xs btn-warning" style="font-size: smaller;" data-toggle="modal" data-target="#postalModal" (click)="open(postalModal)">Reprint Shipping Label</a>
+      </div>
+      
+      <div class="col-xs-8 col-md-10 no-right-left-padding" *ngIf="!item.returnEligible && item.itemStatus != 'RETURN_INITIATED'">
+        <strong style="color: #454848"><span class="fa fa-times"></span> Item Ineligible to Return.</strong>
+      </div>
+    </div>
+  </div>
+  <br/><br/>
+  <!-- div class="col-xs-12 no-right-left-padding">
+    <a type="button" class="btn btn-default" th:href="@{/}">Home</a>
+  </div>
+  <div class="col-xs-12"><br/><br/></div -->
+</div>
+
+<ng-template #postalModal>
+  <div class="modal-header fenix-modal-header">
+    <h4 class="modal-title" style="color: #fff;">Print Shipping Label</h4>
+    <a type="button" class="close" data-dismiss="modal" (click)="close()"><span style="color: #fff;">&times;</span></a>
+  </div>
+  <div class="modal-body">
+    <img src="assets/img/postal.png" class="center-block"/>
+  </div>
+  <div class="modal-footer">
+    <span class="glyphicon glyphicon-print"></span>
+  </div>
+</ng-template>
