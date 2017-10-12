@@ -6,26 +6,53 @@
   padding: 16px;
 }
 
+.navbar {
+ background-color: #1d9ce5;
+ color: white;
+}
+
+.tabview {
+  padding-top: 4%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+::ng-deep .mat-tab-group {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+::ng-deep .mat-tab-list {
+  padding-left: 2%;
+}
+
 /* Styles for tab labels */
-.mat-tab-label {
+::ng-deep .mat-tab-label {
     min-width: 25px !important;
     padding: 5px;
-    background-color: transparent;
+    color: #1d9ce5;
     font-weight: 700;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+    transition: 0.3s;
 }
 
 /* Styles for the active tab label */
-.mat-tab-label.mat-tab-label-active {
+::ng-deep .mat-tab-label.mat-tab-label-active {
     min-width: 25px !important;
     padding: 5px;
-    background-color: transparent;
-    color: #1d9ce5;
+    background-color: #1d9ce5;
+    color: white;
     font-weight: 700;
 }
 
 /* Styles for the ink bar */
-.mat-ink-bar {
+::ng-deep .mat-ink-bar {
     background-color: #1d9ce5;
+}
+
+::ng-deep .mat-tab-body-wrapper {
+  padding-top: 2%;
 }
 
 body {

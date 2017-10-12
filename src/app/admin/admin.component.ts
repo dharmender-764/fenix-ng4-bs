@@ -8,19 +8,27 @@ import { ViewEncapsulation } from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
+  isAdmin = true;
   closeResult: string;
+  modalReference: any;
 
   constructor(private modalService: NgbModal)
   { 
   }
 
-  public open(ruleModal)
+  public open(modal)
   {
-    this.modalService.open(ruleModal).result.then((result) => {
+    this.modalReference = this.modalService.open(modal);
+    this.modalReference.result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  public close()
+  {
+    this.modalReference.close();
   }
 
   private getDismissReason(reason: any): string {
