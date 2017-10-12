@@ -15,6 +15,7 @@ import { NavbarComponent } from './navbar/navbar.component'
 import { AdminComponent } from './admin/admin.component'
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
