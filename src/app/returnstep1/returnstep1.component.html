@@ -1,0 +1,79 @@
+<!-- Begin page content -->
+<div class="container card">
+  <div class="row border-bottom">
+    <div class="col-xs-9">
+      <h4><strong>Returns &amp; Refund</strong></h4>
+    </div>
+  </div>
+
+  <!-- Bread Crumb -->
+  <div class="row no-right-left-padding">
+    <div class="col-xs-12 no-right-left-padding">
+      <ol class="breadcrumb">
+        <li class="active">1. Select Reason</li>
+      </ol>
+    </div>
+  </div>    
+  
+  <!-- content -->
+  <div class="container full-border" style="margin-left: 0">
+    <div class="row">
+      <div class="col-xs-4 col-md-2" style="padding-top: 10px">
+        <img src="assets/img/{{productDetails?.imageUrl}}" onerror="this.src='assets/img/broken_image.png'" class="img-thumbnail" height="75%" width="75%" /><br/>
+      </div>
+      <div class="col-xs-8 col-md-10" style="padding-top: 10px">
+        <div >
+          <div class="col-xs-12">
+            <strong style="color: #454848">{{productDetails?.name}}</strong><br/>
+            <small class="text-muted">SKU# {{productDetails?.code}}</small>
+          </div>
+          <div class="col-xs-12">
+            <small>Order # <strong style="color: #454848">{{orderId}}</strong></small>
+          </div>
+          <div class="col-xs-12">
+            <small>${{productDetails?.price}}</small>
+          </div>
+          <div class="col-xs-12">
+            <small>Eligible for return through <strong style="color: #454848" th:text="${#calendars.format(orderItem.maxReturnDate,'MMMM  d, yyyy')}">July 2nd, 2017</strong></small>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12" style="padding-bottom: 10px"></div>
+    </div>
+  </div>
+  <br/>
+  <form (ngSubmit)="continue()">
+    <input type="hidden" name="orderId" th:value="${orderId}"/>
+     <input type="hidden" name="orderItemId" th:value="${orderItem.id}"/>
+    <input type="hidden" name="productId" th:value="${productDetails.id}"/>
+  
+    <div id="idReasonDiv" class="container no-right-left-padding">
+      <div class="col-xs-12">
+        <strong style="color: #454848">Please select a reason for your return</strong>
+      </div>
+      <div class="col-xs-12" *ngFor="let reason of reasons; let idx = index">
+        <div class="radio" style="margin-top: 3px">
+          <label><input type="radio" [(ngModel)]="reasonId" name="returnReasonId" [value]="reason.id" 
+            [checked]="idx === 0"/>{{reason.description}}</label>
+        </div>
+      </div>
+      <div class="col-xs-12 form-group" style="margin-top: 3px">
+        <button type="Submit" id="idContinueBtn" class="btn btn-primary">Continue</button>
+        <a type="button" id="idCancelBtn" class="btn btn-default" data-toggle="modal" data-target="#cancelReturn" (click)="open(cancelReturn)">Cancel</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<ng-template #cancelReturn>
+  <div class="modal-header fenix-modal-header">
+    Cancel Return Confirmation
+  </div>
+  <div class="modal-body">
+    Are you sure you want to cancel the Return process?
+  </div>
+  <div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-success" id="yes" (click)="yes()">Yes</button>
+    <button type="button" data-dismiss="modal" class="btn btn-danger" id="no" (click)="close()">No</button>
+  </div>
+</ng-template>

@@ -47,7 +47,7 @@
         <small class="text-muted">Order# <span>{{orderDetails.orderId}}</span></small>
       </div>
       <div class="col-xs-8 col-md-10 no-right-left-padding" *ngIf="item.returnEligible && item.itemStatus == 'DELIVERED'">
-        <a class="btn btn-xs btn-warning" th:href="@{/refund_step1(orderId=${orderDetails.orderId},orderItemId=${item.id},productId=${item.product.id})}">Return</a>
+        <a class="btn btn-xs btn-warning" (click)="return(orderDetails.orderId, item.id, item.product.id)">Return</a>
         <a class="btn btn-xs btn-warning disabled">Buy Again</a>
         <a class="btn btn-xs btn-warning disabled">More Options</a>
       </div>

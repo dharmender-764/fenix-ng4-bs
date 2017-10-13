@@ -25,14 +25,25 @@ export class OrderDetailsComponent implements OnInit {
         this.email = params['email'] || '';
         this.phone = params['phone'] || '';
       });
-    this.http.post('http://localhost:9090/apiservices/orderdetails', {
-      orderId: this.orderId,
-      email: this.email,
-      phone: this.phone
-    })
-    .subscribe(res => {
-      this.orderDetails = res.json();
-    });
+    if (this.email == '' && this.phone == '') {
+	    this.http.get('http://localhost:9090/apiservices/cancelreturn?orderId=' + this.orderId)
+	    .subscribe(res => {
+	      this.orderDetails = res.json();
+	    });
+	} else {
+	    this.http.post('http://localhost:9090/apiservices/orderdetails', {
+	      orderId: this.orderId,
+	      email: this.email,
+	      phone: this.phone
+	    })
+	    .subscribe(res => {
+	      this.orderDetails = res.json();
+	    });
+	} 
+  }
+
+  public return(orderId, itemId, productId) {
+    this.router.navigate(['/returnstep1'], { queryParams: {orderId: orderId, orderItemId: itemId, productId: productId} });
   }
 
   public open(modal)

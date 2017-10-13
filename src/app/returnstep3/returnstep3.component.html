@@ -1,0 +1,134 @@
+<!-- Begin page content -->
+<div class="container full-border card">
+  <div class="row border-bottom">
+    <div class="col-xs-9">
+      <h4><strong>Returns &amp; Refund</strong></h4>
+    </div>
+  </div>
+
+  <!-- Bread Crumb -->
+  <div class="row no-right-left-padding">
+    <div class="col-xs-12 no-right-left-padding">
+      <ol class="breadcrumb">
+        <li><a href="#" th:href="@{/refund_step1(orderId=${orderId},productId=${productDetails.id},returnReasonId=${returnReasonId},orderItemId=${orderItemId})}">1. Select Reason</a></li>
+        <li><a href="#" th:href="@{/refund_step2(orderId=${orderId},productId=${productDetails.id},returnReasonId=${returnReasonId},orderItemId=${orderItemId},returnMode=${returnMode})}">2. Return Mode</a></li>
+        <li class="active">3. Confirm</li>
+      </ol>
+    </div>
+  </div>    
+  <!-- content -->
+  <div class="row">
+    <div class="col-xs-4 col-md-2">
+      <img src="assets/img/{{productDetails?.imageUrl}}" onerror="this.src='assets/img/broken_image.png'" class="img-thumbnail" height="75%" width="75%" /><br/>
+    </div>
+    <div class="col-xs-8 col-md-10 no-right-left-padding">
+        <div class="col-xs-12">
+          <strong style="color: #454848">{{productDetails?.name}}</strong><br/>
+          <small class="text-muted">SKU# <span>{{productDetails?.code}}</span></small>
+        </div>
+        <div class="col-xs-12">
+          <small>Order # <strong style="color: #454848">{{orderId}}</strong></small>
+        </div>
+        <div class="col-xs-12">
+          <small>${{productDetails?.price}}</small>
+        </div>
+        <div class="col-xs-12">
+          Return Reason: <strong style="color: #454848"><span>{{returnReasonString}}</span></strong>
+        </div>
+    </div>
+  </div>
+  
+  <div class="no-right-left-padding">
+    <div class="col-xs-12">
+      <hr class="hr" />
+      <span>Estimated Refund Amount: <strong style="color: #454848">{{productDetails?.price}}</strong></span>
+       <hr class="hr" />
+       <span th:if="${returnFee}">Return Label Fee: <strong style="color: #454848">{{returnFee}}</strong></span>
+    </div>
+    
+    <div class="col-xs-12 margin-top">
+      <span>Return Mode:
+        <span *ngIf="returnMode=='1'">
+          <strong style="color: #454848">Return at Store</strong>
+        </span>
+        <span *ngIf="returnMode=='2'">
+          <strong style="color: #454848">Ship back to us</strong><br/>
+          <small class="text-muted">
+            *Average refund processing time is <strong>3-5</strong> business days after you've shipped the package
+          </small>
+        </span>
+      </span><br/>
+      <hr class="hr" />
+    </div>
+    
+    <div class="col-xs-12">
+      <span>Return Payment Method:</span>
+    </div>
+    <div class="col-xs-12">
+      <div class="radio">
+        <label><input type="radio" name="optradio" checked="checked" />Original mode of Payment</label>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <div class="radio" style="margin-top: 1px">
+        <label><input type="radio" name="optradio" />As a Gift Card</label>
+      </div>
+      <hr class="hr" />
+    </div>
+    
+    <div class="row" style="margin-left: 1px;">
+    <div class="col-xs-6">
+      Generate Shipping Label
+    </div>
+    <div class="col-xs-6" style="margin-left: 20px;">
+      <button type="button" id="idContinueBtn" class="btn btn-xs btn-info" data-toggle="modal" data-target="#postalModal" (click)="open(postalModal)">Print Shipping Label</button>
+    </div>
+  </div>
+    <div class="col-xs-12">
+      <div class="radio">
+        <label for="email"><input type="radio" name="email" checked="checked" />Email Shipping Label</label>
+      </div>
+    </div>
+    <div class="col-xs-11 form-group">
+      <input type="text" class="form-control" id="email" th:value="${orderEmail}" />
+    </div>
+    <div class="col-xs-12">
+      <div class="radio" style="margin-top: 1px">
+        <label><input type="radio" name="sms" />SMS</label>
+      </div>
+      <hr class="hr" />
+    </div>
+    
+    <div class="col-xs-12 form-group">
+      <a type="button" id="idContinueBtn" class="btn btn-success" (click)="confirm()">Confirm</a>
+      <a type="button" id="idCancelBtn" class="btn btn-default" data-toggle="modal" data-target="#cancelReturn" (click)="open(cancelReturn)">Cancel</a>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #postalModal>
+  <div class="modal-header fenix-modal-header">
+    <h4 class="modal-title" style="color: #fff;">Print Shipping Label</h4>
+    <a type="button" class="close" data-dismiss="modal" (click)="close()"><span style="color: #fff;">&times;</span></a>
+  </div>
+  <div class="modal-body">
+    <img src="assets/img/postal.png" class="center-block"/>
+  </div>
+  <div class="modal-footer">
+    <span class="fa fa-print"></span>
+  </div>
+</ng-template>
+
+<ng-template #cancelReturn>
+  <div class="modal-header fenix-modal-header">
+    Cancel Return Confirmation
+  </div>
+  <div class="modal-body">
+    Are you sure you want to cancel the Return process?
+  </div>
+  <div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-success" id="yes" (click)="yes()">Yes</button>
+    <button type="button" data-dismiss="modal" class="btn btn-danger" id="no" (click)="close()">No</button>
+  </div>
+</ng-template>

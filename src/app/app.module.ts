@@ -16,6 +16,10 @@ import { ContactComponent } from './contact/contact.component';
 import { NavbarComponent } from './navbar/navbar.component'
 import { AdminComponent } from './admin/admin.component'
 import { OrderDetailsComponent } from './orderdetails/orderdetails.component'
+import { ReturnStep1Component } from './returnstep1/returnstep1.component'
+import { ReturnStep2Component } from './returnstep2/returnstep2.component'
+import { ReturnStep3Component } from './returnstep3/returnstep3.component'
+import { ConfirmComponent } from './confirm/confirm.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,7 +27,12 @@ const routes: Routes = [
   { path: 'aboutus', component: AboutusComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'admin', component: AdminComponent },
-  { path: 'orderdetails', component: OrderDetailsComponent }
+  { path: 'orderdetails', component: OrderDetailsComponent },
+  { path: 'cancelReturn', component: OrderDetailsComponent },
+  { path: 'returnstep1', component: ReturnStep1Component },
+  { path: 'returnstep2', component: ReturnStep2Component },
+  { path: 'returnstep3', component: ReturnStep3Component },
+  { path: 'confirm', component: ConfirmComponent }
 ];
 
 @NgModule({
@@ -34,7 +43,11 @@ const routes: Routes = [
     ContactComponent,
     NavbarComponent,
     AdminComponent,
-    OrderDetailsComponent
+    OrderDetailsComponent,
+    ReturnStep1Component,
+    ReturnStep2Component,
+    ReturnStep3Component,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
