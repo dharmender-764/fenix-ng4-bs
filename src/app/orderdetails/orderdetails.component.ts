@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
+import { API_URL  } from "./../constants";
 
 @Component({
   selector: 'orderdetails-root',
@@ -26,12 +27,12 @@ export class OrderDetailsComponent implements OnInit {
         this.phone = params['phone'] || '';
       });
     if (this.email == '' && this.phone == '') {
-	    this.http.get('http://localhost:9090/apiservices/cancelreturn?orderId=' + this.orderId)
+	    this.http.get(API_URL + '/cancelreturn?orderId=' + this.orderId)
 	    .subscribe(res => {
 	      this.orderDetails = res.json();
 	    });
 	} else {
-	    this.http.post('http://localhost:9090/apiservices/orderdetails', {
+	    this.http.post(API_URL + '/orderdetails', {
 	      orderId: this.orderId,
 	      email: this.email,
 	      phone: this.phone

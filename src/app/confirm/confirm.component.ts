@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
+import { API_URL  } from "./../constants";
 
 @Component({
   selector: 'confirm-root',
@@ -24,7 +25,7 @@ export class ConfirmComponent {
         this.orderItemId = params['orderItemId'] || '';
       });
     let params = 'orderId=' + this.orderId + '&orderItemId=' + this.orderItemId;
-    this.http.get('http://localhost:9090/apiservices/confirm?' + params)
+    this.http.get(API_URL + '/confirm?' + params)
     .subscribe(res => {
       let resjson = res.json();
       this.confirmationNumber = resjson.confirmationNumber;

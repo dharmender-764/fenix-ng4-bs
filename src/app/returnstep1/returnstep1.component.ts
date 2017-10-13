@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
+import { API_URL  } from "./../constants";
 
 @Component({
   selector: 'returnstep1-root',
@@ -61,7 +62,7 @@ export class ReturnStep1Component {
         this.productId = params['productId'] || '';
       });
     let params = 'orderId=' + this.orderId + '&orderItemId=' + this.orderItemId + '&productId=' + this.productId;
-    this.http.get('http://localhost:9090/apiservices/refund_step1?' + params)
+    this.http.get(API_URL + '/refund_step1?' + params)
     .subscribe(res => {
       let resjson = res.json();
       this.productDetails = resjson.productDetails;
